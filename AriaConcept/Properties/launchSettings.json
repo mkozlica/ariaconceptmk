@@ -1,0 +1,41 @@
+{
+  "profiles": {
+    "AriaConcept": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "FORGE_CLIENT_SECRET": "4ANslYMnGbLYgOZA",
+        "FORGE_CLIENT_ID": "BDyAA8uIjFjcL2vKHogf3svNAumqsVKD",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FORGE_WEBHOOK_URL": "http://1a3c-93-86-170-105.ngrok.io"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:3000"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "FORGE_CLIENT_SECRET": "4ANslYMnGbLYgOZA",
+        "FORGE_CLIENT_ID": "BDyAA8uIjFjcL2vKHogf3svNAumqsVKD",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FORGE_WEBHOOK_URL": "http://1a3c-93-86-170-105.ngrok.io"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": false,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:42123",
+      "sslPort": 0
+    }
+  }
+}

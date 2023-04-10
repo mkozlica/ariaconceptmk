@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8" />
+    <title>Aria Configurator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fafafa">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/configurator.css">
+
+    <!--Forge Viewer-->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <!--.NET SignalR-->
+    <script src="//unpkg.com/%40aspnet/signalr%401.1.0/dist/browser/signalr.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="above-header-wrap">
+            <p>En ce moment: la livraison est gratuite dans tout la France!</p>
+        </div>
+        <div class="primary-header-wrap">
+            <div class="primary-header-section-left">
+                <img class="site-logo" src="/assets/images/aria-logo.svg">
+            </div>
+            <div class="primary-header-section-right">
+                <nav>
+                    <ul class="main-navigation">
+                        <li><a href="#">Placards</a></li>
+                        <li><a href="#">Dressing</a></li>
+                        <li><a href="#">Meubles</a></li>
+                        <li><a href="#">Inspiration</a></li>
+                        <li><a href="#">Realisations</a></li>
+                        <li><a href="#">A propos</a></li>
+                    </ul>
+                </nav>
+                <span class="mobile-menu-toggle-icon">
+                    <svg class="ast-mobile-svg ast-menu-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 7h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 19h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path></svg>
+                </span>
+            </div>
+            <!-- Ovo dugme nosi podatak o korisniku. Treba mi kada cuvam podatke na forgu i bazi podataka -->
+            <button class="order-button" id="userActions">nedeljko.sovljanski@teamcad.rs</button>
+        </div>
+        <nav></nav>
+
+    </header>
+    <main role="main">
+        <section class="configurator-wrap">
+            <aside class="sidebar">
+                <ul class="accordion">
+                    <li>
+                        <a class="trigger"><span class="step">01/05</span>LOCATION OF THE WARDROBE</a>
+                        <div class="content">
+                            <p class="title">Select the location of your wardrobe:</p>
+                            <div id="locations-list"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="trigger"><span class="step">02/05</span>DIMENSIONS</a>
+                        <div class="content">
+                            <p class="title">Select the dimensions of your wardrobe:</p>
+                            <div id="height-slider" class="range-slider">
+                                <div class="slider-title">HEIGHT</div>
+                                <button class="btn-range" data-dir="minus"><img src="/assets/images/dim_icon_min.svg"></button>
+                                <input id="totalHeight" data-dimensions="height" class="range-slider__range" type="range" value="" min="" max="">
+                                <button class="btn-range" data-dir="plus"><img src="/assets/images/dim_icon_max.svg"></button>
+                                <span class="range-slider__value"></span>
+                            </div>
+
+                            <div id="width-slider" class="range-slider">
+                                <div class="slider-title">WIDTH</div>
+                                <button class="btn-range" data-dir="minus"><img src="/assets/images/dim_icon_min.svg"></button>
+                                <input id="totalWidth" data-dimensions="width" class="range-slider__range" type="range" value="" min="" max="">
+                                <button class="btn-range" data-dir="plus"><img src="/assets/images/dim_icon_max.svg"></button>
+                                <span class="range-slider__value"></span>
+                            </div>
+
+                            <div id="depth-slider" class="range-slider">
+                                <div class="slider-title">DEPTH</div>
+                                <button class="btn-range" data-dir="minus"><img src="/assets/images/dim_icon_min.svg"></button>
+                                <input id="totalDepth" data-dimensions="depth" class="range-slider__range" type="range" value="" min="" max="">
+                                <button class="btn-range" data-dir="plus"><img src="/assets/images/dim_icon_max.svg"></button>
+                                <span class="range-slider__value"></span>
+                            </div>
+
+                            <div id="leg-height-slider" class="range-slider">
+                                <div class="slider-title">LEG HEIGHT</div>
+                                <button class="btn-range" data-dir="minus"><img src="/assets/images/dim_icon_min.svg"></button>
+                                <input id="legHeight" data-dimensions="leg-height" class="range-slider__range" type="range" value="" min="" max="">
+                                <button class="btn-range" data-dir="plus"><img src="/assets/images/dim_icon_max.svg"></button>
+                                <span class="range-slider__value"></span>
+                            </div>
+                            <div id="dimensions-min-max"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="trigger"><span class="step">03/05</span>CHOOSE MODULES</a>
+                        <div class="content">
+                            <p class="title">Select the modules of your wardrobe:</p>
+                            <div id="modules-list"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="trigger"><span class="step">04/05</span>CHOOSE DOORS</a>
+                        <div class="content">
+                            <p class="title">Select the dors of your wardrobe:</p>
+                            <!-- checkboxes -->
+                            <div class="doors-list">
+                                <fieldset>
+                                    <legend>Select door</legend>
+                                    <div class="aria-checkbox">
+                                        <input class="aria-door" value="Without door" id="globalDoorTypeNone" name="doors" type="radio" />
+                                        <label for="globalDoorTypeNone">Without door</label>
+                                    </div>
+                                    <div class="aria-checkbox">
+                                        <input class="aria-door" value="Left opening door" id="globalDoorTypeLeft" name="doors" type="radio" />
+                                        <label for="globalDoorTypeLeft">Left opening door</label>
+                                    </div>
+                                    <div class="aria-checkbox">
+                                        <input class="aria-door" value="Right opening door" id="globalDoorTypeRight" name="doors" type="radio" />
+                                        <label for="globalDoorTypeRight">Right opening door</label>
+                                    </div>
+                                    <div class="aria-checkbox">
+                                        <input class="aria-door" value="Sliding door" id="globalDoorTypeSlided" name="doors" type="radio" />
+                                        <label for="globalDoorTypeSlided">Sliding door</label>
+                                    </div>
+                                </fieldset>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="withHandle" value="With handle" name="handle">
+                                    <label for="withHandle">WITH HANDLE</label>
+                                </label>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="noHandle" value="No handle" name="handle">
+                                    <label for="noHandle">NO HANDLE</label>
+                                </label>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="withBottom" value="With bottom" name="bottom">
+                                    <label for="withBottom">WITH BOTTOM</label>
+                                </label>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="noBottom" value="No bottom" name="bottom">
+                                    <label for="noBottom">NO BOTTOM</label>
+                                </label>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="withLED" value="With LED stripe" name="LED">
+                                    <label for="withLED">WITH LED STRIPE</label>
+                                </label>
+
+                                <label class="aria-checkbox">
+                                    <input class="aria-door" type="radio" id="noLED" value="No LED stripe" name="LED">
+                                    <label for="noLED">NO LED STRIPE</label>
+                                </label>
+                                <button class="order-button unactive" id="createPreview">Preview</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="trigger"><span class="step">05/05</span>CHOOSE COLORS</a>
+                        <div class="content">
+                            <p class="title">Select the color of your wardrobe:</p>
+                            <p class="subtitle outside-title">COLOR ON THE OUTSIDE</p>
+                            <div id="colors-outside-list" class="colors-list"></div>
+                            <p class="subtitle inside-title">COLOR ON THE INSIDE</p>
+                            <div id="colors-inside-list" class="colors-list"></div>
+                            <button class="order-button unactive" id="applyColor">Apply color</button>
+                        </div>
+                    </li>
+                    <!-- Ovo bih izbacio jer se prikazuje sa desne strane
+                    <li>
+                        <a class="trigger"><span class="step">INFO</span>CONFIRM YOUR ORDER</a>
+                        <div class="content">
+                            <p class="title">Summary your order:</p>
+
+                            <form id="orderForm" action="">
+                                <input class="order-field" type="hidden" id="location" name="location" value="">
+                                <input class="order-field" type="hidden" id="height" name="height" value="">
+                                <input class="order-field" type="hidden" id="width" name="width" value="">
+                                <input class="order-field" type="hidden" id="depth" name="depth" value="">
+                                <input class="order-field" type="hidden" id="module" name="module" value="">
+                                <input class="order-field" type="hidden" id="colorInside" name="colorInside" value="">
+                                <input class="order-field" type="hidden" id="colorOutside" name="colorOutside" value="">
+                                <input class="order-field" type="hidden" id="doors" name="doors" value="" required>
+                                <input class="order-field" type="hidden" id="handle" name="handle" value="" required>
+                                <input class="order-field" type="hidden" id="bottom" name="bottom" value="" required>
+                                <input class="order-button reset" type="reset" value="Reset">
+                                <input class="order-button" id="submitOrder" type="submit" value="Submit">
+                            </form>
+                            <hr>
+                            <button class="order-button" id="submitOrder">Save Project</button>
+                        </div>
+                    </li>
+                                    -->
+
+                </ul> <!-- / accordion -->
+
+            </aside>
+            <div class="configurator-results" id="preview"></div>
+            <div class="configurator-results" id="overlay">
+                <div id="progressBar"></div>
+                <div id="infoContent"></div>
+            </div>
+            <div id="order-data">
+                <div class="summary">
+                    <p class="title">Summary your order:</p>
+                    <p><b>Location:</b></p>
+                    <div class="sum-location"></div>
+                    <p><b>Dimensions:</b></p>
+                    <div class="sum-height"></div>
+                    <div class="sum-width"></div>
+                    <div class="sum-depth"></div>
+                    <div class="sum-leg-height"></div>
+                    <p><b>Module:</b></p>
+                    <!--<div class="sum-module"></div>-->
+                    <div class="choosenModules" id="myChoosenModules"></div>
+                    <p><b>Doors:</b></p>
+                    <div class="sum-doors"></div>
+                    <div class="sum-handle"></div>
+                    <div class="sum-bottom"></div>
+                    <div class="sum-LED"></div>
+                    <p><b>Colors:</b></p>
+                    <div class="sum-color-outside"></div>
+                    <div class="sum-color-inside"></div>
+                </div>
+                <div class="order-info">
+                    <p>--- Delivery time: 2 - 3 weeks</p>
+                    <p>--- Estimated price: 1.984 EUR</p>
+                    <p>--- Delivery fee: 0 EUR</p>
+                    <p>--- Total TTC: 1.984 EUR</p>
+                </div>
+                <button class="order-button reset" id="resetOrder">Reset</button>
+                <button class="order-button" id="submitOrder">Submit</button>
+                <hr>
+                <button class="order-button" id="saveProject">Save Project</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+
+    <script src="/extensions/material-swatch.js"></script>
+    <script src="/js/materialHandler.js"></script>
+    <script src="/js/prices.js"></script>
+    <script src="/js/viewer.js"></script>
+    <script src="/js/modules.js"></script>
+    <script src="/js/ForgeDesignAutomation.js"></script>
+    <script src="/js/ForgeOSS.js"></script>
+    <script src="/js/drawings.js"></script>
+    <script src="/js/dataForModules.js"></script>
+    <script src="/js/dataPacker.js"></script>
+    <script src="/js/translator.js"></script>
+    <script src="/js/eMailer.js"></script>
+    <script src="/js/componentEvents.js"></script>
+    <script src="/assets/js/configurator.js"></script>
+</body>
+</html>

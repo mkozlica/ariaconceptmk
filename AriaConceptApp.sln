@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriaConcept", "AriaConcept\AriaConcept.csproj", "{BF58EC8A-27DC-4EC7-A3A3-EDDA8E113F93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF58EC8A-27DC-4EC7-A3A3-EDDA8E113F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF58EC8A-27DC-4EC7-A3A3-EDDA8E113F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF58EC8A-27DC-4EC7-A3A3-EDDA8E113F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF58EC8A-27DC-4EC7-A3A3-EDDA8E113F93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46705C55-3B8F-4D31-9B33-3BF73BDD2F27}
+	EndGlobalSection
+EndGlobal
